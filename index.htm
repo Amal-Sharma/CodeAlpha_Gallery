@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .gallery {
+            text-align: center;
+        }
+
+        #gallery-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #prev-btn {
+            left: 10px;
+        }
+
+        #next-btn {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery">
+            <img id="gallery-image" src="image1.jpg" alt="Gallery Image">
+        </div>
+        <button id="prev-btn" class="nav-btn">Prev</button>
+        <button id="next-btn" class="nav-btn">Next</button>
+    </div>
+
+    <script>
+        const images = [
+            'https://images.pexels.com/photos/27052953/pexels-photo-27052953/free-photo-of-woman-sitting-at-a-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'https://images.pexels.com/photos/26725716/pexels-photo-26725716/free-photo-of-flock-of-flamingos.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'https://images.pexels.com/photos/26690851/pexels-photo-26690851/free-photo-of-close-up-of-a-bee-sitting-on-a-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'https://images.pexels.com/photos/26546832/pexels-photo-26546832/free-photo-of-quote-on-a-window-glass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+        ];
+
+        let currentIndex = 0;
+
+        const galleryImage = document.getElementById('gallery-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateImage() {
+            galleryImage.src = images[currentIndex];
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateImage();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateImage();
+        });
+
+        
+        updateImage();
+    </script>
+</body>
+</html>
